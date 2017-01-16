@@ -1,0 +1,52 @@
+\documentclass{ctexbook}
+
+\begin{document}
+\clearpage
+%% temporary titles
+% command to provide stretchy vertical space in proportion
+\newcommand\nbvspace[1][3]{\vspace*{\stretch{#1}}}
+% allow some slack to avoid under/overfull boxes
+\newcommand\nbstretchyspace{\spaceskip0.5em plus 0.25em minus 0.25em}
+% To improve spacing on titlepages
+\newcommand{\nbtitlestretch}{\spaceskip0.6em}
+\pagestyle{empty}
+\begin{center}
+\bfseries
+\nbvspace[1]
+\Huge
+{\nbtitlestretch\huge AMAP}
+
+\nbvspace[1]
+\normalsize
+
+Amazing Methods \& Philosophy in Advanced Mathematics
+
+\Large 高等数学中的神奇方法与哲学
+
+\nbvspace[2]
+
+\normalsize 一本有深度的而非常规的高等数学书
+
+\nbvspace[1]
+\small 作者 \Large 陈铮\\[0.5em]
+\footnotesize 编辑 A君、B君
+\normalsize
+
+
+\end{center}
+
+\tableofcontents
+
+\chapter{极限的等价变换}
+
+\chapter{惰性求导}
+
+\chapter{直达式分部积分}
+
+\chapter{多重积分方法论}
+
+\chapter{幂级数与数列长除法}
+
+
+
+\end{document}
