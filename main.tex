@@ -1,4 +1,25 @@
 \documentclass{ctexbook}
+\usepackage{subfiles}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{geometry}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+ 
+\urlstyle{same}
+
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm
+}
 
 \begin{document}
 \clearpage
@@ -29,7 +50,7 @@ Amazing Methods \& Philosophy in Advanced Mathematics
 
 \nbvspace[1]
 \small 作者 \Large 陈铮\\[0.5em]
-\footnotesize 编辑 A君、B君
+\small 编辑 {\large 友人 A 君}
 \normalsize
 
 
@@ -39,9 +60,11 @@ Amazing Methods \& Philosophy in Advanced Mathematics
 
 \chapter{极限的等价变换}
 
-\chapter{惰性求导}
+% 惰性求导
+\subfile{chapters/lazy_derivative.tex}
 
-\chapter{直达式分部积分}
+% 内联积分
+\subfile{chapters/inline_integration.tex}
 
 \chapter{多重积分方法论}
 

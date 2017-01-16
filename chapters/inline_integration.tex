@@ -1,0 +1,78 @@
+\chapter[内联积分]{内联积分 \\ Inline Integration}
+
+在计算机科学中，\textbf{内联展开} (Inline Expansion) 是一种编译器优化手段，避免了函数调用、返回的开销。将其思想应用到分部积分上，得到\textbf{内联积分}。
+
+\section{原理}
+递归内联展开传统的分部积分公式：
+
+\begin{equation}
+    \int {f(x) \mathrm{d} g(x)} = f(x) g(x) - \int {g(x) \mathrm{d} f(x)}
+\end{equation}
+
+得到内联积分公式：
+
+\begin{equation}
+    \int {f(x) \mathrm{d} g(x)} = \sum_{i = 0}^{k}{(-1)^{i} f^{(i)}(x) g^{(-i)}(x)} + r(x)
+\end{equation}
+
+其中 $r(x)$ 为内联展开余项。
+
+取 $k = +\infty$ 得到内联积分级数展开式：
+
+\begin{equation}
+    \int {f(x) \mathrm{d} g(x)} = \sum_{i = 0}^{\infty}{(-1)^{i} f^{(i)}(x) g^{(-i)}(x)} + r(x)
+\end{equation}
+
+对于不定积分问题，使用内联积分的关键在于合理选取 $f(x), g(x)$，使得余项 $r(x) = C$。
+
+
+\section{对比例子}
+
+对于一个经典的需要分部积分法计算的不定积分：
+
+$$
+\int {e^x x^3 \mathrm{d}x}
+$$
+
+传统的分部积分算法需要\textbf{完整调用} 3 次分部积分：
+
+\begin{equation*}
+\begin{aligned}
+\int{e^x x^3 \mathrm{d} x} 
+& = \int {x^3 \mathrm{d} e^x} & \\
+& = e^x x^3 - \int {e^x \mathrm{d} x^3} & \text{1st call} \\
+& = e^x x^3 - \int {3x^2 e^x \mathrm{d} x} & \\
+& = e^x x^3 - \int {3x^2 \mathrm{d} e^x} & \\
+& = e^x x^3 - 3 e^x x^2 + \int {e^x \mathrm{d}(3x^2)} & \text{2nd call} \\
+& = e^x x^3 - 3 e^x x^2 + \int {6x e^x \mathrm{d} x} & \\
+& = e^x x^3 - 3 e^x x^2 + \int {6x \mathrm{d} e^x} & \\
+& = e^x x^3 - 3 e^x x^2 + 6 e^x x - \int {e^x \mathrm{d}(6x)} & \text{3rd call} \\
+& = e^x x^3 - 3 e^x x^2 + 6 e^x x - \int {6 e^x \mathrm{d} x} & \\
+& = e^x x^3 - 3 e^x x^2 + 6 e^x x - 6 e^x + C & \\
+& = e^x (x^3 - 3x^2 + 6x - 6) + C & \\
+\end{aligned}
+\end{equation*}
+
+而内联积分算法采用了一种手段来降低这个开销：
+
+\begin{align*}
+\int {e^x x^3 \mathrm{d} x}
+& = \int {x^3 \mathrm{d} e^x} \\
+& = + x^3 e^x - 3x^2 e^x + 6x e^x - 6 e^x + C && \text{(表 \ref{tab:1})} \\
+& = e^x (x^3 - 3x^2 + 6x - 6) + C
+\end{align*}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c c}
+        符号 & 微分 & 积分 \\
+        \hline
+        $+$ & $x^3$ & $e^x$ \\
+        $-$ & $3x^2$ & $e^x$ \\
+        $+$ & $6x$ & $e^x$ \\
+        $-$ & $6$ & $e^x$ \\
+        $+$ & $0$ & $e^x$ \\
+    \end{tabular}
+    \caption{内联积分算表：$\int {x^3 \mathrm{d} e^x}$}
+    \label{tab:1}
+\end{table}
