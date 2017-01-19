@@ -1,0 +1,56 @@
+\chapter[阶修约]{阶修约 \\ Order Rounding}
+
+\textbf{修约}具有非常古老的历史。例如四舍五入法等数值修约规则，舍去过长的尾数，目的是减少不必要的计算量。在计算\textbf{等价无穷小量}时，无穷小量可以应用修约的思想，按阶修约到等价无穷小量。
+
+\section{原理}
+
+根据\textbf{微积分基本定理}，微分与积分互为逆运算 \footnote{微积分基本定理并不适用于所有的函数，但这超出了本书的讨论范围。}。
+
+\section{对比例子}
+
+\textbf{例一}：求 $x - \frac{1}{2} \sin{2x}$ 的等价无穷小。
+
+\textbf{解法一}：阶修约
+
+\begin{equation}
+\begin{aligned}
+    \lim_{x\to 0} x - \frac{1}{2} \sin{2x}
+    & = \lim_{x \to 0} \int_{0}^{x}{\mathrm{d}(x - \frac{1}{2} \sin{2x})} \\
+    & = \lim_{x \to 0} \int_{0}^{x}{(1 - \cos{2x}) \mathrm{d}x}  \\
+    & = \lim_{x \to 0} \int_{0}^{x}{(\int_{0}^{x}{ \mathrm{d}(1-\cos{2x})}) \mathrm{d}x} \\
+    & = \lim_{x \to 0} \int_{0}^{x}{\Big(\int_{0}^{x} {(2 \sin{2x}) \mathrm{d}x}\Big)\mathrm{d}x} \\
+    & = \lim_{x \to 0} \int_{0}^{x}{\Big(\int_{0}^{x} {(4x) \mathrm{d}x} \Big) \mathrm{d}x} \\
+    & = \lim_{x\to 0} \int_{0}^{x}{(2x^2) \mathrm{d}x} \\
+    & = \lim_{x\to 0} \frac{2x^3}{3} \\
+\end{aligned}
+\end{equation}
+$\therefore x-\sin{x}\cos{x} \thicksim \frac{2x^3}{3}$。
+
+\textbf{解法二}：泰勒展开
+
+\begin{equation}
+\begin{aligned}
+    \lim_{x \to 0} x - \frac{1}{2} \sin{2x} 
+    & = \lim_{x \to 0} {x - (x - \frac{2x^3}{3} + \frac{2x^5}{15})} \\
+    & = \lim_{x \to 0} {\frac{2x^3}{3} - \frac{2x^5}{15}}
+\end{aligned}
+\end{equation}
+此时无法确定5阶是否保留\\ %其实这里我也不知道咋编了，只能先这样编了吧2333
+\\
+\\
+\textbf{例二}：求 $\lg{x} - x + 1 $ 的等价无穷小。 %这个例子感觉用taylor更简单ahhhh我实在编不出例子了 先把解法二空在这吧...
+
+\textbf{解法一}：阶修约
+\begin{equation}
+\begin{aligned}
+    \lim_{x \to 1} \lg{x} - x + 1
+    & = \lim_{x \to 1} \int_{0}^{x}{(\frac{1}{x} - 1) \mathrm{d}x} \\
+    & = \lim_{x \to 1} \int_{0}^{x}\Big({ \int_{0}^{x}{(- \frac{1}{x^2}) \mathrm{d} x}\Big)\mathrm{d}x} \\
+    & = \lim_{x \to 1} \int_{0}^{x}\Big({ \int_{0}^{x}{(-1)\mathrm{d}x} \Big)\mathrm{d}x} \\
+    & = \lim_{x \to 1}\int_{0}^{x}{\Big( -x \Big) \mathrm{d}x} \\
+    & = \lim_{x \to 1} - \frac{1}{2} x^2 \\
+\end{aligned}
+\end{equation}
+$ \therefore \lg{x} - x + 1 \thicksim - \frac{1}{2} x^2 $。
+
+\textbf{解法二}：

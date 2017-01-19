@@ -4,6 +4,7 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{geometry}
+\usepackage{amssymb}
 
 \hypersetup{
     colorlinks=true,
@@ -46,11 +47,11 @@ Amazing Methods \& Philosophy in Advanced Mathematics
 
 \nbvspace[2]
 
-\normalsize 一本有深度的而非常规的高等数学书
+\normalsize 一本非常规的高等数学课外书
 
 \nbvspace[1]
 \small 作者 \Large 陈铮\\[0.5em]
-\small 编辑 {\large 友人 A 君}
+\small 编辑 {\large 袁靖松}
 \normalsize
 
 
@@ -58,8 +59,15 @@ Amazing Methods \& Philosophy in Advanced Mathematics
 
 \tableofcontents
 
-\chapter{极限的等价变换}
+\part[极限]{极限 \\ Limit \\ 
+    {\normalsize 极限是微积分的基础}
+}
+% 阶修约
+\subfile{chapters/order_rounding.tex}
 
+\part[微分]{微分 \\ Differential Calculus \\
+    {\normalsize 微分学}
+}
 % 惰性求导
 \subfile{chapters/lazy_derivative.tex}
 

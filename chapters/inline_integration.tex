@@ -23,6 +23,8 @@
     \int {f(x) \mathrm{d} g(x)} = \sum_{i = 0}^{\infty}{(-1)^{i} f^{(i)}(x) g^{(-i)}(x)} + r(x)
 \end{equation}
 
+\footnote { $g^{(-i)}(x)$表示对g(x)积分i次 }
+
 对于不定积分问题，使用内联积分的关键在于合理选取 $f(x), g(x)$，使得余项 $r(x) = C$。
 
 
@@ -65,14 +67,47 @@ $$
 \begin{table}[H]
     \centering
     \begin{tabular}{c c c}
-        符号 & 微分 & 积分 \\
+        符号位 & 微分 & 积分 \\
         \hline
-        $+$ & $x^3$ & $e^x$ \\
-        $-$ & $3x^2$ & $e^x$ \\
-        $+$ & $6x$ & $e^x$ \\
-        $-$ & $6$ & $e^x$ \\
-        $+$ & $0$ & $e^x$ \\
+        $1$  & $x^3$  & $e^x$ \\
+        $-1$ & $3x^2$ & $e^x$ \\
+        $1$  & $6x$   & $e^x$ \\
+        $-1$ & $6$    & $e^x$ \\
+             & $0$    &       \\
     \end{tabular}
     \caption{内联积分算表：$\int {x^3 \mathrm{d} e^x}$}
     \label{tab:1}
 \end{table}
+
+
+
+对于不定积分 \footnote{这个本应该用三角换元来做，对于分部积分来说确实比较苛刻。}：
+\begin{equation*}
+    \int {\frac{x^5}{\sqrt{1 - x^2}} \mathrm{d} x} 
+\end{equation*}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c c}
+        符号位 & 微分 & 积分 \\
+        \hline
+        $0$  & $\frac{x^5}{\sqrt{1 - x^2}}$  & $\frac{x}{\sqrt{1 - x^2}}$ \\
+        $1$  & $x^4$ & $-(1 - x^2)^{\frac{1}{2}}$ \\
+        $0$  & $4x^3$ & $- x (1 - x^2)^{\frac{1}{2}}$ \\
+        $-1$ & $4x^2$ & $(1 - x^2)^{\frac{3}{2}}$      \\
+        $0$  & $4x$ & $x(1 - x^2)^{\frac{3}{2}}$ \\
+        $1$  & $4$ & $-(1 - x^2)^{\frac{5}{2}}$ \\
+             & $0$ & \\
+    \end{tabular}
+    \caption{内联积分算表：$\int {\frac{x^5}{\sqrt{1 - x^2}} \mathrm{d} x}$}
+    \label{tab:2}
+\end{table}
+
+
+\begin{equation}
+\begin{aligned}
+    \int {\frac{x^5}{\sqrt{1 - x^2}} \mathrm{d}x} 
+    & = \int {x^4\mathrm{d}\Big(- \sqrt{1- x^2}\Big) } \\
+    & = \int 
+\end{aligned}
+\end{equation}
